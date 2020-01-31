@@ -1,18 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.HDPipeline;
 
 public class PlayerMovement : MonoBehaviour
 {
     public LayerMask jumpCheckLayerMask;
+    public LayerMask movementCheckLayerMask;
     public GameObject head;
     
     private Rigidbody body;
-    
-    public float speed = 10;
+
+    public float playerHeight = 2;
+    public float playerRadius = 0.5f;
+    public float acceleration = 10;
+    public float maxSpeed = 10;
     public float sprintModifier = 1.5f;
+    public float flyingAccelerationModifier = 0.6f;
     public float rotationSpeed = 5;
     public float jumpForce = 5;
+
+    private float headRot = 0;
     
     //debug
     private float time;
@@ -26,31 +35,45 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+
         RotateBody();
         RotateHead();
+    }
 
+    private void Update()
+    {
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
     }
 
+    public bool CheckWallInDirection(Vector3 direction, LayerMask layerMask)
+    {
+        Vector3 origin = new Vector3(transform.position.x + playerRadius + direction.x, transform.position.y - playerHeight/2, transform.position.z + direction.z);
+        Vector3 boxSize = new Vector3(playerRadius, playerHeight, playerRadius) / 2;
+        return Physics.CheckBox(origin, boxSize, transform.rotation, layerMask);
+    }
+    
+    public bool IsGrounded()
+    {
+        return Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - playerHeight * 0.4f, transform.position.z), 0.3f, jumpCheckLayerMask);
+    }
+    
     public void Jump()
     {
-        Debug.Log(transform.position.y);
-        if (Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y,transform.position.z), 0.3f, jumpCheckLayerMask))
+        if (IsGrounded())
         {
-            body.velocity = new Vector3(body.velocity.x, jumpForce, body.velocity.z);
+            Vector3 jump = new Vector3(0,jumpForce,0);
+            body.AddForce(jump * body.mass, ForceMode.Impulse);
         }
     }
     
     public void RotateHead()
     {
-        float xRot;
-
-        xRot = -Input.GetAxis("Mouse Y") * rotationSpeed;
-        
-        head.transform.Rotate(xRot, 0, 0);
+        headRot -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        headRot = Mathf.Clamp(headRot, -90f, 90f);
+        head.transform.rotation = Quaternion.Euler(headRot, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
     }
     
     public void RotateBody()
@@ -65,46 +88,39 @@ public class PlayerMovement : MonoBehaviour
     public void Move()
     {
         Vector3 direction = Vector3.zero;
-        float currentSpeed = speed;
+        float currentAcceleration = acceleration;
+        float currentMaxSpeed = maxSpeed;
         
-        //sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            currentSpeed *= sprintModifier;
+            currentAcceleration *= sprintModifier;
+            currentMaxSpeed *= sprintModifier;
         }
         
-        //move
-        //vertical
         direction += transform.forward * Input.GetAxisRaw("Vertical");
         
-        //horizontal
         direction += transform.right * Input.GetAxisRaw("Horizontal");
 
         direction.Normalize();
-        direction = currentSpeed * Time.deltaTime * direction;
+        direction *= currentAcceleration * Time.deltaTime;
+        direction.y = 0;
+        
+        float realSpeed = new Vector3(body.velocity.x, 0, body.velocity.z).magnitude;
+        float dynamicAcc = realSpeed < currentMaxSpeed ? currentMaxSpeed - realSpeed : 0;
 
-        float realspeed = new Vector3(body.velocity.x, 0, body.velocity.z).magnitude;
-
-        body.MovePosition(body.position + direction);
-
-//        transform.Translate(direction);
-//        body.velocity = new Vector3(direction.x, body.velocity.y, direction.z);
-
-//        direction.y = body.velocity.y;
-//        if (realspeed < 10)
-//        {
-//            body.AddForce(direction, ForceMode.Force);
-//        }
-
-//        if (body.velocity.y > 1)
-//        {
-//            body.velocity = new Vector3(body.velocity.x, 1, body.velocity.z);
-//        }
+        if (IsGrounded())
+        {
+            body.AddForce(direction * dynamicAcc, ForceMode.Force);
+        }
+        else
+        {
+            body.AddForce(direction * dynamicAcc / 3, ForceMode.Force);
+        }
 
         time = time + Time.fixedDeltaTime;
         if (time > 1.0f)
         {
-            Debug.Log("Current speed = " + realspeed + " m/s");
+            Debug.Log("Current speed = " + realSpeed + " m/s");
             time = 0.0f;
         }
     }
