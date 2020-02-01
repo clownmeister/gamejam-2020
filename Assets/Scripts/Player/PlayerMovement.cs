@@ -6,29 +6,38 @@ using UnityEngine.Experimental.Rendering.HDPipeline;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public LayerMask jumpCheckLayerMask;
-    public LayerMask movementCheckLayerMask;
-    public GameObject head;
+    private PlayerEntity entity;
+    
+    private LayerMask jumpCheckLayerMask;
+    private GameObject head;
+    private float playerHeight;
+    private float playerRadius;
+    private float acceleration;
+    private float maxSpeed;
+    private float sprintModifier;
+    private float flyingAccelerationModifier;
+    private float rotationSpeed;
+    private float jumpForce;
     
     private Rigidbody body;
-
-    public float playerHeight = 2;
-    public float playerRadius = 0.5f;
-    public float acceleration = 700;
-    public float maxSpeed = 5;
-    public float sprintModifier = 1.3f;
-    public float flyingAccelerationModifier = 0.9f;
-    public float rotationSpeed = 5;
-    public float jumpForce = 4;
-
     private float headRot = 0;
     
-    //debug
-    private float time;
-    // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        entity = GetComponent<PlayerEntity>();
+
+        
+        this.jumpCheckLayerMask = entity.jumpCheckLayerMask;
+        this.head = entity.head;
+        this.playerHeight = entity.playerHeight;
+        this.playerRadius = entity.playerRadius;
+        this.acceleration = entity.acceleration;
+        this.maxSpeed = entity.maxSpeed;
+        this.sprintModifier = entity.sprintModifier;
+        this.flyingAccelerationModifier = entity.flyingAccelerationModifier;
+        this.rotationSpeed = entity.rotationSpeed;
+        this.jumpForce = entity.jumpForce;
     }
 
     // Update is called once per frame
@@ -48,13 +57,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public bool CheckWallInDirection(Vector3 direction, LayerMask layerMask)
-    {
-        Vector3 origin = new Vector3(transform.position.x + playerRadius + direction.x, transform.position.y - playerHeight/2, transform.position.z + direction.z);
-        Vector3 boxSize = new Vector3(playerRadius, playerHeight, playerRadius) / 2;
-        return Physics.CheckBox(origin, boxSize, transform.rotation, layerMask);
-    }
-    
     public bool IsGrounded()
     {
         return Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - playerHeight * 0.4f, transform.position.z), 0.3f, jumpCheckLayerMask);
@@ -115,13 +117,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             body.AddForce(direction * dynamicAcc / 3, ForceMode.Force);
-        }
-
-        time = time + Time.fixedDeltaTime;
-        if (time > 1.0f)
-        {
-            Debug.Log("Current speed = " + realSpeed + " m/s");
-            time = 0.0f;
         }
     }
 }
