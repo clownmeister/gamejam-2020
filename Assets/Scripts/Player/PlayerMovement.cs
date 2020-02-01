@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     
     private LayerMask jumpCheckLayerMask;
     private GameObject head;
+    private GameObject camera;
     private float playerHeight;
     private float playerRadius;
     private float acceleration;
@@ -20,16 +21,16 @@ public class PlayerMovement : MonoBehaviour
     private float jumpForce;
     
     private Rigidbody body;
+    private Animator camAnim;
     private float headRot = 0;
     
     void Start()
     {
-        body = GetComponent<Rigidbody>();
         entity = GetComponent<PlayerEntity>();
-
         
         this.jumpCheckLayerMask = entity.jumpCheckLayerMask;
         this.head = entity.head;
+        this.camera = entity.camera;
         this.playerHeight = entity.playerHeight;
         this.playerRadius = entity.playerRadius;
         this.acceleration = entity.acceleration;
@@ -38,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
         this.flyingAccelerationModifier = entity.flyingAccelerationModifier;
         this.rotationSpeed = entity.rotationSpeed;
         this.jumpForce = entity.jumpForce;
+
+        body = GetComponent<Rigidbody>();
+        camAnim = camera.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
@@ -68,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 jump = new Vector3(0,jumpForce,0);
             body.AddForce(jump * body.mass, ForceMode.Impulse);
+            
+            camAnim.SetTrigger("jump");
         }
     }
     
