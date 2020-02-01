@@ -11,6 +11,9 @@
           <e p="GameManager" t="Include">
             <e p="GameSettings.cs" t="Include" />
           </e>
+          <e p="Platforms" t="Include">
+            <e p="ForcePlatform.cs" t="Include" />
+          </e>
           <e p="Player" t="Include">
             <e p="PlayerEntity.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
