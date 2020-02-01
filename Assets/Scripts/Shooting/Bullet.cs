@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public Vector3 extraVelocity;
     private GameObject bulletDeathParticleSystem;
     private GameObject debugPlatformPrefab;
     private float speed;
@@ -23,7 +24,7 @@ public class Bullet : MonoBehaviour
         this.ttl = GameSettings.instance.bulletTTL;
         this.falloff = GameSettings.instance.bulletFalloff;
         
-        bulletBody.AddForce(transform.forward * speed, ForceMode.Impulse);
+        bulletBody.AddForce(transform.forward * speed + extraVelocity, ForceMode.Impulse);
         ttdStamp = Time.time + ttl;
     }
 

@@ -17,9 +17,16 @@ public class GravityPlatform : MonoBehaviour
 
     public GravityDirection gravityDirection;
     public float antiGravityForce;
-    private void OnTriggerEnter(Collider other)
+
+    private Vector3 direction;
+
+    private void Start()
     {
-        Vector3 direction = new Vector3();
+        SetDirection();           
+    }
+
+    public void SetDirection()
+    {
         switch (gravityDirection)
         {
             case GravityDirection.up:
@@ -41,11 +48,15 @@ public class GravityPlatform : MonoBehaviour
                 direction = -transform.right;
                 break;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         other.attachedRigidbody.AddForce(direction * antiGravityForce,ForceMode.Force);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        other.attachedRigidbody.AddForce(-transform.right * antiGravityForce,ForceMode.Force);
+        other.attachedRigidbody.AddForce(direction * antiGravityForce,ForceMode.Force);
     }
 }
