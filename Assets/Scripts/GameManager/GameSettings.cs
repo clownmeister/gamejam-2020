@@ -8,6 +8,7 @@ public class GameSettings : MonoBehaviour
 
     [Header("Bullet settings")] 
     public GameObject bulletDeathParticleSystem;
+    public GameObject debugPlatform;
     public float bulletSpeed;
     public float bulletTTL;
     public float bulletFalloff;

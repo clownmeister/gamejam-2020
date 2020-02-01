@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private GameObject bulletDeathParticleSystem;
+    private GameObject debugPlatformPrefab;
     private float speed;
     private float ttl;
     private float falloff;
@@ -17,6 +18,7 @@ public class Bullet : MonoBehaviour
         bulletBody = GetComponent<Rigidbody>();
 
         this.bulletDeathParticleSystem = GameSettings.instance.bulletDeathParticleSystem;        
+        this.debugPlatformPrefab = GameSettings.instance.debugPlatform;        
         this.speed = GameSettings.instance.bulletSpeed;
         this.ttl = GameSettings.instance.bulletTTL;
         this.falloff = GameSettings.instance.bulletFalloff;
@@ -44,6 +46,7 @@ public class Bullet : MonoBehaviour
         if (effect)
         {
             GameObject.Instantiate(bulletDeathParticleSystem, transform.position, Quaternion.Euler(-90,0,0)).GetComponent<ParticleSystem>().Play();
+            GameObject.Instantiate(debugPlatformPrefab, transform.position, Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0)));
         }
         GameObject.Destroy(this.transform.gameObject);
     }

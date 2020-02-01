@@ -11,6 +11,7 @@ public class PlayerEntity : MonoBehaviour
     [Header("Physics settings")]
     public LayerMask jumpCheckLayerMask;
     public GameObject head;
+    public GameObject camera;
     
     public float playerHeight = 2;
     public float playerRadius = 0.5f;
