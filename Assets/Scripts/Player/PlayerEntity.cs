@@ -23,9 +23,15 @@ public class PlayerEntity : MonoBehaviour
     public float jumpForce = 4;
 
     [Header("Shooting settings")]
+    public GameObject barrel;
+    public GameObject gun;
     public GameObject bulletSpawn;
     public GameObject bulletPrefab;
     public float reloadCD;
     public float shootDelay;
-    
+
+    [Header("Gun settings")] 
+    public GameObject ammoPrefab;
+    public Transform[] ammoSlots;
+    public AmmoType[] ammoTypes;
 }
