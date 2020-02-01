@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public AmmoType ammoData;
     public Vector3 extraVelocity;
     private GameObject bulletDeathParticleSystem;
     private GameObject debugPlatformPrefab;
@@ -39,6 +40,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.collider.tag == "platform")
+        {
+            other.transform.GetComponent<ChangablePlatform>().PerformAction(ammoData);
+        }
         Die();
     }
 
@@ -47,7 +52,7 @@ public class Bullet : MonoBehaviour
         if (effect)
         {
             GameObject.Instantiate(bulletDeathParticleSystem, transform.position, Quaternion.Euler(-90,0,0)).GetComponent<ParticleSystem>().Play();
-            GameObject.Instantiate(debugPlatformPrefab, transform.position, Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0)));
+//            GameObject.Instantiate(debugPlatformPrefab, transform.position, Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0)));
         }
         GameObject.Destroy(this.transform.gameObject);
     }

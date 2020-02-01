@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a28c664558dd240b09e99ac6f49fc2, type: 3}
   m_Name: Red
   m_EditorClassIdentifier: 
+  ammoAction: 2
   ammoMaterial: {fileID: 2100000, guid: 3b41664921c7eb449981b14bcf7a6510, type: 2}
-  platformType: {fileID: 0}

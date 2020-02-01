@@ -47,7 +47,8 @@ public class ForcePlatform : MonoBehaviour
                 direction = transform.up;
                 break;
             case ForceDirection.custom:
-                direction = customDirection.normalized;
+                direction = ((transform.forward * customDirection.x) + (transform.up * customDirection.y) + (transform.right * customDirection.z));
+                direction = direction.normalized;
                 break;
         }
         

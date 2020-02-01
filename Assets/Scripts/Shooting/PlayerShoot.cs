@@ -56,6 +56,7 @@ public class PlayerShoot : MonoBehaviour
         foreach (Transform ammoSlot in ammoSlots)
         {
             GameObject newAmmo = GameObject.Instantiate(ammoPrefab, ammoSlot);
+            newAmmo.GetComponent<AmmoTypeLink>().link = ammoTypes[typeInd];
             newAmmo.GetComponent<Renderer>().material = ammoTypes[typeInd].ammoMaterial;
             
             Debug.Log(typeInd);
@@ -85,10 +86,9 @@ public class PlayerShoot : MonoBehaviour
         gun.ShootAnim();
         GameObject newBullet = GameObject.Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
         newBullet.GetComponent<Bullet>().extraVelocity = body.velocity;
+        newBullet.GetComponent<Bullet>().ammoData = loadedAmmo[currentAmmoIndex].GetComponent<AmmoTypeLink>().link;
         newBullet.GetComponent<Renderer>().material = loadedAmmo[currentAmmoIndex].GetComponent<Renderer>().material;
         currentAmmoIndex = currentAmmoIndex <= 0 ? loadedAmmo.Length-1 : currentAmmoIndex - 1;
         Debug.Log(currentAmmoIndex);
-        newBullet.transform.localScale = new Vector3(1,1,1);
-//        currentAmmoIndex--;
     }
 }

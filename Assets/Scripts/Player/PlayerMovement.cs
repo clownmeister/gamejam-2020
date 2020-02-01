@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void RotateHead()
     {
-        headRot -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        headRot -= Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime * 100;
         headRot = Mathf.Clamp(headRot, -90f, 90f);
         head.transform.rotation = Quaternion.Euler(headRot, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
     }
@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float yRot;
 
-        yRot = Input.GetAxis("Mouse X") * rotationSpeed;
+        yRot = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime * 100;
         
         transform.Rotate(new Vector3(0,yRot,0));
     }

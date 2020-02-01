@@ -19,6 +19,7 @@
             <e p="GunBarrel.cs" t="Include" />
           </e>
           <e p="Platforms" t="Include">
+            <e p="ChangablePlatform.cs" t="Include" />
             <e p="ForcePlatform.cs" t="Include" />
             <e p="GravityPlatform.cs" t="Include" />
             <e p="PlatformAnimLink.cs" t="Include" />
@@ -28,6 +29,7 @@
             <e p="PlayerMovement.cs" t="Include" />
           </e>
           <e p="Shooting" t="Include">
+            <e p="AmmoTypeLink.cs" t="Include" />
             <e p="Bullet.cs" t="Include" />
             <e p="PlayerShoot.cs" t="Include" />
           </e>
