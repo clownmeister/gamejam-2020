@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: f013943ad44e45640b7b81b5e34e1d7c,
     type: 3}
   m_ShaderKeywords: _NORMALMAP_TANGENT_SPACE
-  m_LightmapFlags: 2
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
