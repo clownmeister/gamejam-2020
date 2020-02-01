@@ -3,10 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerShoot))]
+[RequireComponent(typeof(PlayerMovement))]
+
 public class PlayerEntity : MonoBehaviour
 {
-    public static PlayerEntity instance;
-
+    [Header("Physics settings")]
+    public LayerMask jumpCheckLayerMask;
+    public GameObject head;
+    public GameObject camera;
+    
     public float playerHeight = 2;
     public float playerRadius = 0.5f;
     public float acceleration = 700;
@@ -15,9 +21,11 @@ public class PlayerEntity : MonoBehaviour
     public float flyingAccelerationModifier = 0.9f;
     public float rotationSpeed = 5;
     public float jumpForce = 4;
+
+    [Header("Shooting settings")]
+    public GameObject bulletSpawn;
+    public GameObject bulletPrefab;
+    public float reloadCD;
+    public float shootDelay;
     
-    private void Start()
-    {
-        instance = this;
-    }
 }
