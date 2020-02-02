@@ -40,12 +40,8 @@ public class ChangablePlatform : MonoBehaviour
 
             case AmmoType.AmmoAction.rotate:
                 Rotate();
-               
-
                 //R
-                anim = GameObject.Find("jumpad01_emissive").GetComponent<Animator>();
                 anim.SetTrigger("Red");
-
                 break;
         }
     }

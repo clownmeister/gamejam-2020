@@ -51,6 +51,8 @@ MonoBehaviour:
   bulletSpeed: 15
   bulletTTL: 5
   bulletFalloff: 0
+  respawnPoint: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!114 &6385615936709372123
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -331,7 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceDirection: 2
   customDirection: {x: 0, y: 2, z: 1}
-  force: 13
+  force: 16
 --- !u!65 &2950860281539987163
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
   jumpPad: {fileID: 2950860281539987158}
   emmisonBlock: {fileID: 5240258309071237564}
   mats: {fileID: 2100000, guid: ebca02be81309134691e8d627287a950, type: 2}
-  anim: {fileID: 0}
+  anim: {fileID: 95177585}
 --- !u!1 &5240258309071237564
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 9143005381586060207}
   - component: {fileID: 268382322861226393}
   - component: {fileID: 5802313245857989984}
-  - component: {fileID: 1094990204}
+  - component: {fileID: 95177585}
   m_Layer: 0
   m_Name: jumpad01_emissive
   m_TagString: Untagged
@@ -664,7 +664,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &1094990204
+--- !u!95 &95177585
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -802,6 +802,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2950860282165455421}
     m_Modifications:
+    - target: {fileID: 8919201713424408337, guid: a2b3f57f92c497b41adae6d859712ea3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 302d31ad4cb168a479e2845b894751fe, type: 2}
     - target: {fileID: 8919201713424408339, guid: a2b3f57f92c497b41adae6d859712ea3,
         type: 3}
       propertyPath: m_Name
