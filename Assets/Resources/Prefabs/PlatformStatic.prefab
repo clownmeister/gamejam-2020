@@ -782,7 +782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceDirection: 1
   customDirection: {x: 0, y: 0, z: 0}
-  force: 50
+  force: 16
 --- !u!65 &6182785652029636377
 BoxCollider:
   m_ObjectHideFlags: 0
