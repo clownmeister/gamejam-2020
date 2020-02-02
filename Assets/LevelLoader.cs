@@ -17,12 +17,23 @@ public class LevelLoader : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name == "Menu")
+        if(Input.GetKeyDown(KeyCode.Space) && (SceneManager.GetActiveScene().name == "Menu" || SceneManager.GetActiveScene().name == "Menu_Controls" ))
         {
             Debug.Log("Menu is selected");
             LoadLevel();
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
+
+    public void loadEnd()
+    {
+        SceneManager.LoadScene(3);
+    }
+
 
     public void LoadLevel ()
     {
