@@ -17,8 +17,12 @@ public class GameSettings : MonoBehaviour
     public GameObject Player;
 
     public AudioClip musicLoop;
+    public bool endOpen = false;
     private AudioSource audioS;
     private bool finishedIntro = false;
+
+    public GameObject endSphere;
+    public Material openMat;
     void Awake()
     {
         instance = this;
@@ -38,5 +42,11 @@ public class GameSettings : MonoBehaviour
             Player.transform.rotation = respawnPoint.rotation;
             Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
+    }
+
+    public void OpenEnd()
+    {
+        endOpen = true;
+        endSphere.GetComponent<Renderer>().material = openMat;
     }
 }

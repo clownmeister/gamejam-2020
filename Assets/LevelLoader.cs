@@ -29,7 +29,7 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-    public void loadEnd()
+    public static void loadEnd()
     {
         SceneManager.LoadScene(3);
     }

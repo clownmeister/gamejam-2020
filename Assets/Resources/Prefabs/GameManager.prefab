@@ -55,6 +55,9 @@ MonoBehaviour:
   respawnPoint: {fileID: 0}
   Player: {fileID: 0}
   musicLoop: {fileID: 8300000, guid: 1024bbde46584914cbf7d617b0f97012, type: 3}
+  endOpen: 0
+  endSphere: {fileID: 0}
+  openMat: {fileID: 2100000, guid: 4271c6e45751a8240ab7f478c51f47a2, type: 2}
 --- !u!114 &6385615936709372123
 MonoBehaviour:
   m_ObjectHideFlags: 0

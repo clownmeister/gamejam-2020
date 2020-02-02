@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - playerHeight * 0.4f, transform.position.z), 0.3f, jumpCheckLayerMask);
+        return Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - playerHeight * 0.4f, transform.position.z), 0.4f, jumpCheckLayerMask);
     }
     
     public void Jump()
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            body.AddForce(direction * dynamicAcc / 3, ForceMode.Force);
+            body.AddForce(direction / 5, ForceMode.Force);
         }
     }
 }

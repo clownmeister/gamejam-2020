@@ -19,6 +19,8 @@
             <e p="Gun.cs" t="Include" />
             <e p="GunBarrel.cs" t="Include" />
           </e>
+          <e p="OrbEnd.cs" t="Include" />
+          <e p="OrbKey.cs" t="Include" />
           <e p="Platforms" t="Include">
             <e p="ChangablePlatform.cs" t="Include" />
             <e p="ForcePlatform.cs" t="Include" />
