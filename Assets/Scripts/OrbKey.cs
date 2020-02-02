@@ -9,5 +9,6 @@ public class OrbKey : MonoBehaviour
     {
         GameSettings.instance.OpenEnd();
         GameObject.Destroy(this.gameObject);
+        //test
     }
 }
