@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Red
   m_EditorClassIdentifier: 
   ammoAction: 2
-  ammoMaterial: {fileID: 2100000, guid: 3b41664921c7eb449981b14bcf7a6510, type: 2}
+  ammoMaterial: {fileID: 2100000, guid: 731cba51f8ff5b546b6765c145490d38, type: 2}

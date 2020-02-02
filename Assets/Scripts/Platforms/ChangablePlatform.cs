@@ -7,26 +7,45 @@ public class ChangablePlatform : MonoBehaviour
 {
     public GameObject speedPad;
     public GameObject jumpPad;
-    public GameObject emmisonBlock;
+    public GameObject emmisonBlock; //Toto byl GameObject
 
-    public Material[] mats;
+    public Material mats;
+
+
+
+    //Shaders
+
+    public Animator anim;
+
 
     public void PerformAction(AmmoType data)
     {
         switch (data.ammoAction)
         {
             case AmmoType.AmmoAction.jump:
-                emmisonBlock.GetComponent<Renderer>().material = mats[0];
+                emmisonBlock.GetComponent<Renderer>().material = mats;
+
                 speedPad.SetActive(false);
                 jumpPad.SetActive(true);
+
+                anim.SetTrigger("Blue");
                 break;
             case AmmoType.AmmoAction.move:
-                emmisonBlock.GetComponent<Renderer>().material = mats[1];
+
                 speedPad.SetActive(true);
                 jumpPad.SetActive(false);
+
+                anim.SetTrigger("Green");
                 break;
+
             case AmmoType.AmmoAction.rotate:
                 Rotate();
+               
+
+                //R
+                anim = GameObject.Find("jumpad01_emissive").GetComponent<Animator>();
+                anim.SetTrigger("Red");
+
                 break;
         }
     }

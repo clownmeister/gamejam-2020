@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a28c664558dd240b09e99ac6f49fc2, type: 3}
   m_Name: Blue
   m_EditorClassIdentifier: 
-  ammoMaterial: {fileID: 2100000, guid: 7b746ed316ae9d14daf39299814e8a04, type: 2}
-  platformType: {fileID: 0}
+  ammoAction: 0
+  ammoMaterial: {fileID: 2100000, guid: 90a04801e1520da4ea856014e91434c7, type: 2}

@@ -25,7 +25,9 @@ public class ForcePlatform : MonoBehaviour
     {
         if (anim = GetComponentsInChildren<Animator>()[0])
         {
+            
             disabledAnim = false;
+            
         }
     }
 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Green
   m_EditorClassIdentifier: 
   ammoAction: 1
-  ammoMaterial: {fileID: 2100000, guid: b63d644cbdbae2a4d85d8fd424b3c8cb, type: 2}
+  ammoMaterial: {fileID: 2100000, guid: 724d22cb33437a5409cd1b6e8043c341, type: 2}
